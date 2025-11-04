@@ -36,11 +36,9 @@ module.exports = grammar({
         ";",
       ),
 
-    struct_definition: ($) =>
-      seq("struct", field("name", $.identifier), $.struct_block),
+    struct_definition: ($) => seq("struct", $.identifier, $.struct_block),
 
-    extension_definition: ($) =>
-      seq("extension", field("name", $.identifier), $.struct_block),
+    extension_definition: ($) => seq("extension", $.identifier, $.struct_block),
 
     struct_block: ($) =>
       seq(
@@ -58,20 +56,20 @@ module.exports = grammar({
     function_definition: ($) =>
       seq(
         "func",
-        field("name", $.identifier),
-        field("parameters", $.parameter_list),
+        $.identifier,
+        $.parameter_list,
         optional(field("return_type", $.identifier)),
-        field("body", $.logic_block),
+        $.logic_block,
       ),
 
     type_function_definition: ($) =>
       seq(
         "type",
         "func",
-        field("name", $.identifier),
-        field("parameters", $.parameter_list),
+        $.identifier,
+        $.parameter_list,
         optional(field("return_type", $.identifier)),
-        field("body", $.logic_block),
+        $.logic_block,
       ),
 
     operator_override: ($) =>
@@ -81,7 +79,7 @@ module.exports = grammar({
         $.operador_overridble,
         choice("(rhs)", "(lhs)"),
         optional(field("return_type", $.identifier)),
-        field("body", $.logic_block),
+        $.logic_block,
       ),
 
     // TODO: Removed (), [], []=
@@ -195,7 +193,12 @@ module.exports = grammar({
       prec.right(99, seq("alloc(", $.identifier, ")", optional($.alloc_block))),
 
     alloc_block: ($) =>
-      seq("{", list_of(",", seq(".", $.identifier, "=", $.expression)), optional(",") ,"}"),
+      seq(
+        "{",
+        list_of(",", seq(".", $.identifier, "=", $.expression)),
+        optional(","),
+        "}",
+      ),
 
     method_call: ($) => seq($.identifier, ".", $.function_call),
 
