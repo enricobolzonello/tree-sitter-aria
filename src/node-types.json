@@ -828,6 +828,10 @@
     "named": true
   },
   {
+    "type": "operator",
+    "named": false
+  },
+  {
     "type": "return",
     "named": false
   },

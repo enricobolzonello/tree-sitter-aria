@@ -1,0 +1,55 @@
+==========
+Import statements
+==========
+
+import Path from aria.io.path;
+import aria.io.path;
+
+---
+
+(source_file
+  (import
+    (identifier)
+    (identifier)
+    (identifier)
+    (identifier))
+  (import
+    (identifier)
+    (identifier)
+    (identifier)))
+
+========
+val declaration statements
+========
+
+val counter;
+val counter = 0;
+
+---
+
+(source_file
+  (variable_declaration
+    (identifier))
+  (variable_declaration
+    (identifier)
+    (expression
+      (number))))
+
+=======
+Return statement
+=======
+
+func next() {
+    return 1;
+}
+
+---
+
+(source_file
+  (function_definition
+    (identifier)
+    (parameter_list)
+    (logic_block
+      (return_statement
+        (expression
+          (number))))))

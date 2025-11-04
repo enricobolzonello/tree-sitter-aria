@@ -1,0 +1,55 @@
+==============
+Struct definition
+==============
+
+struct Foo {
+    type func new(n) {
+        return alloc(This){
+            .n = n,
+        };
+    }
+
+    operator + (rhs) {
+        return 42;
+    }
+
+    reverse operator + (lhs) {
+        return this._op_impl_add(lhs);
+    }
+}
+
+---
+(source_file
+(struct_definition
+    (identifier)
+    (struct_block
+      (type_function_definition
+        (identifier)
+        (parameter_list
+          (parameter
+            (identifier)))
+        (logic_block
+          (return_statement
+            (expression
+              (alloc_call
+                (identifier)
+                (alloc_block
+                  (identifier)
+                  (expression
+                    (identifier))))))))
+      (operator_override
+        (logic_block
+          (return_statement
+            (expression
+              (number)))))
+      (operator_override
+        (logic_block
+          (return_statement
+            (expression
+              (method_call
+                (identifier)
+                (function_call
+                  (identifier)
+                  (argument_list
+                    (expression
+                      (identifier))))))))))))

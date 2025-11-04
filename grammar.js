@@ -75,6 +75,7 @@ module.exports = grammar({
     operator_override: ($) =>
       seq(
         optional("reverse"),
+        "operator",
         choice(
           "+",
           "-",

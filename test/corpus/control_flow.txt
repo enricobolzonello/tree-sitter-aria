@@ -1,0 +1,93 @@
+========
+Match statement 
+========
+
+func prettyprint() {
+    match this {
+        case Fahrenheit(f) => {
+            return "{0} F".format(f);
+        }, case Celsius(c) => {
+            return "{0} C".format(c);
+        }
+    }
+}
+
+---
+
+
+
+========
+If statement
+========
+
+func prettyprint(a) {
+    if a == 5 {
+        println("a is 5");
+    }
+    
+    if a == 5 {
+        println("a is 5");
+    } else {
+        println("a is neither 5 nor 10");
+    }
+    
+    if a == 5 {
+        println("a is 5");
+    } elsif a == 10 {
+        println("a is 10");
+    }
+    
+    if a == 5 {
+        println("a is 5");
+    } elsif a == 10 {
+        println("a is 10");
+    } else {
+        println("a is neither 5 nor 10");
+    }
+}
+
+---
+
+
+
+=======
+For statement
+=======
+
+func prettyprint(a) {
+    for i in [] {
+        println(i);
+    }
+    
+    for x in [] {
+        println(x);
+    } else {
+        println("This list is empty!");
+    }
+}
+
+---
+
+
+
+=======
+While statement
+=======
+
+func prettyprint(a) {
+    while x > 0 {
+        println("x is positive");
+        x -= 1;
+    }
+    
+    while x > 0 {
+        println("x is positive");
+        x -= 1;
+    } else {
+        println("x is <= 0");
+    }
+}
+
+---
+
+
