@@ -1,0 +1,15 @@
+{
+  "parser-directories": [
+    "$HOME/projects",
+    "$HOME/tree-sitter-aria",
+    "$HOME/git",
+    "$HOME/github"
+  ],
+  "theme": {
+    "keyword": "green",
+    "variable": "blue",
+    "number": "purple",
+    "string": "yellow",
+    "comment": "red"
+  }
+}

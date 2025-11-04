@@ -6,11 +6,10 @@
       "camelcase": "Aria",
       "title": "Aria",
       "scope": "source.aria",
-      "file-types": [
-        "aria"
-      ],
+      "file-types": ["aria"],
       "injection-regex": "^aria$",
-      "class-name": "TreeSitterAria"
+      "class-name": "TreeSitterAria",
+      "highlights": "queries/highlights.scm"
     }
   ],
   "metadata": {

@@ -1,0 +1,21 @@
+# Commenting something XD
+
+struct Foo {
+    type func new(n) {
+        return alloc(This){
+            .n = n,
+        };
+    }
+
+    func prettyprint() {
+        return "Foo(" + this.n + ")";
+    }
+    
+    operator + (rhs) {
+        return 42;
+    }
+
+    reverse operator + (lhs) {
+        return this._op_impl_add(lhs);
+    }
+}
