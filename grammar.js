@@ -75,17 +75,42 @@ module.exports = grammar({
     operator_override: ($) =>
       seq(
         optional("reverse"),
-        "operator",
-        $.operador_overridble,
+        choice(
+          "+",
+          "-",
+          "*",
+          "/",
+          "%",
+          "<<",
+          ">>",
+          "==",
+          "!=",
+          "<",
+          ">",
+          "<=",
+          ">=",
+          "&",
+          "|",
+          "^",
+          "u-",
+        ),
         choice("(rhs)", "(lhs)"),
         optional(field("return_type", $.identifier)),
         $.logic_block,
       ),
 
-    // TODO: Removed (), [], []=
-    // TODO: Differenciate between operator overridable and regular operators
-    operador_overridble: ($) =>
+    operator: ($) =>
       choice(
+        "+=",
+        "-=",
+        "*=",
+        "/=",
+        "%=",
+        "<<=",
+        ">>=",
+        "&=",
+        "|=",
+        "^=",
         "+",
         "-",
         "*",
@@ -102,22 +127,6 @@ module.exports = grammar({
         "&",
         "|",
         "^",
-        "u-",
-      ),
-
-    operator: ($) =>
-      choice(
-        "+=",
-        "-=",
-        "*=",
-        "/=",
-        "%=",
-        "<<=",
-        ">>=",
-        "&=",
-        "|=",
-        "^=",
-        $.operador_overridble,
       ),
 
     parameter_list: ($) => seq("(", optional($.parameter), ")"),
