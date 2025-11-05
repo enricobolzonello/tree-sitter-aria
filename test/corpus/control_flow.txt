@@ -5,10 +5,10 @@ Match statement
 func prettyprint() {
     match this {
         case Fahrenheit(f) => {
-            return "{0} F".format(f);
+            return;
         }, 
         case Celsius(c) => {
-            return "{0} C".format(c);
+            return;
         }
     }
 }
@@ -29,177 +29,141 @@ func prettyprint() {
                 (identifier)
                 (identifier))
               (logic_block
-                (return_statement
-                  (expression
-                    (string)
-                    (operator)
-                    (expression
-                      (function_call
-                        (identifier)
-                        (argument_list
-                          (expression
-                            (identifier)))))))))
+                (return_statement)))
             (match_arm
               (pattern
                 (identifier)
                 (identifier))
               (logic_block
-                (return_statement
-                  (expression
-                    (string)
-                    (operator)
-                    (expression
-                      (function_call
-                        (identifier)
-                        (argument_list
-                          (expression
-                            (identifier)))))))))))))))
+                (return_statement)))))))))
 
 ========
 If statement
 ========
 
-func prettyprint(a) {
-    if a == 5 {
-        println("a is 5");
+func prettyprint(a, b) {
+    if a {
+        println();
     }
     
-    if a == 5 {
-        println("a is 5");
+    if a {
+        println();
     } else {
-        println("a is neither 5 nor 10");
+        println();
     }
     
-    if a == 5 {
-        println("a is 5");
-    } elsif a == 10 {
-        println("a is 10");
+    if a {
+        println();
+    } elsif b {
+        println();
     }
     
-    if a == 5 {
-        println("a is 5");
-    } elsif a == 10 {
-        println("a is 10");
+    if a {
+        println();
+    } elsif b {
+        println();
     } else {
-        println("a is neither 5 nor 10");
+        println();
     }
 }
 
 ---
 
 (source_file
-  (function_definition
-    (identifier)
-    (parameter_list
-      (parameter
-        (identifier)))
-    (logic_block
-      (control_flow_statement
-        (if_statement
-          (expression
-            (identifier)
-            (operator)
-            (expression
-              (number)))
-          (logic_block
-            (expression_statement
+      (function_definition
+        (identifier)
+        (parameter_list
+          (parameter
+            (identifier))
+          (ERROR
+            (UNEXPECTED 'b')))
+        (logic_block
+          (control_flow_statement
+            (if_statement
               (expression
-                (function_call
-                  (identifier)
-                  (argument_list
+                (primary_expression
+                  (identifier)))
+              (logic_block
+                (expression_statement
+                  (expression
+                    (primary_expression
+                      (function_call
+                        (identifier)
+                        (argument_list))))))))
+          (control_flow_statement
+            (if_statement
+              (expression
+                (primary_expression
+                  (identifier)))
+              (logic_block
+                (expression_statement
+                  (expression
+                    (primary_expression
+                      (function_call
+                        (identifier)
+                        (argument_list))))))
+              (else_clause
+                (logic_block
+                  (expression_statement
                     (expression
-                      (string)))))))))
-      (control_flow_statement
-        (if_statement
-          (expression
-            (identifier)
-            (operator)
-            (expression
-              (number)))
-          (logic_block
-            (expression_statement
+                      (primary_expression
+                        (function_call
+                          (identifier)
+                          (argument_list)))))))))
+          (control_flow_statement
+            (if_statement
               (expression
-                (function_call
-                  (identifier)
-                  (argument_list
+                (primary_expression
+                  (identifier)))
+              (logic_block
+                (expression_statement
+                  (expression
+                    (primary_expression
+                      (function_call
+                        (identifier)
+                        (argument_list))))))
+              (elsif_clause
+                (expression
+                  (primary_expression
+                    (identifier)))
+                (logic_block
+                  (expression_statement
                     (expression
-                      (string)))))))
-          (else_clause
-            (logic_block
-              (expression_statement
-                (expression
-                  (function_call
-                    (identifier)
-                    (argument_list
-                      (expression
-                        (string))))))))))
-      (control_flow_statement
-        (if_statement
-          (expression
-            (identifier)
-            (operator)
-            (expression
-              (number)))
-          (logic_block
-            (expression_statement
+                      (primary_expression
+                        (function_call
+                          (identifier)
+                          (argument_list)))))))))
+          (control_flow_statement
+            (if_statement
               (expression
-                (function_call
-                  (identifier)
-                  (argument_list
+                (primary_expression
+                  (identifier)))
+              (logic_block
+                (expression_statement
+                  (expression
+                    (primary_expression
+                      (function_call
+                        (identifier)
+                        (argument_list))))))
+              (elsif_clause
+                (expression
+                  (primary_expression
+                    (identifier)))
+                (logic_block
+                  (expression_statement
                     (expression
-                      (string)))))))
-          (elsif_clause
-            (expression
-              (identifier)
-              (operator)
-              (expression
-                (number)))
-            (logic_block
-              (expression_statement
-                (expression
-                  (function_call
-                    (identifier)
-                    (argument_list
-                      (expression
-                        (string))))))))))
-      (control_flow_statement
-        (if_statement
-          (expression
-            (identifier)
-            (operator)
-            (expression
-              (number)))
-          (logic_block
-            (expression_statement
-              (expression
-                (function_call
-                  (identifier)
-                  (argument_list
+                      (primary_expression
+                        (function_call
+                          (identifier)
+                          (argument_list)))))))
+              (else_clause
+                (logic_block
+                  (expression_statement
                     (expression
-                      (string)))))))
-          (elsif_clause
-            (expression
-              (identifier)
-              (operator)
-              (expression
-                (number)))
-            (logic_block
-              (expression_statement
-                (expression
-                  (function_call
-                    (identifier)
-                    (argument_list
-                      (expression
-                        (string))))))))
-          (else_clause
-            (logic_block
-              (expression_statement
-                (expression
-                  (function_call
-                    (identifier)
-                    (argument_list
-                      (expression
-                        (string)))))))))))))
+                      (primary_expression
+                        (function_call
+                          (identifier)
+                          (argument_list))))))))))))
 
 =======
 For statement
@@ -207,122 +171,116 @@ For statement
 
 func prettyprint(a) {
     for i in [] {
-        println(i);
+        println();
     }
     
     for x in [] {
-        println(x);
+        println();
     } else {
-        println("This list is empty!");
+        println();
     }
 }
 
 ---
 
-(source_file
-  (function_definition
-    (identifier)
-    (parameter_list
-      (parameter
-        (identifier)))
-    (logic_block
-      (control_flow_statement
-        (for_statement
-          (identifier)
-          (expression
-            (array))
-          (logic_block
-            (expression_statement
+    (source_file
+      (function_definition
+        (identifier)
+        (parameter_list
+          (parameter
+            (identifier)))
+        (logic_block
+          (control_flow_statement
+            (for_statement
+              (identifier)
               (expression
-                (function_call
-                  (identifier)
-                  (argument_list
-                    (expression
-                      (identifier)))))))))
-      (control_flow_statement
-        (for_statement
-          (identifier)
-          (expression
-            (array))
-          (logic_block
-            (expression_statement
+                (primary_expression
+                  (literal
+                    (array))))
+              (logic_block
+                (expression_statement
+                  (expression
+                    (primary_expression
+                      (function_call
+                        (identifier)
+                        (argument_list))))))))
+          (control_flow_statement
+            (for_statement
+              (identifier)
               (expression
-                (function_call
-                  (identifier)
-                  (argument_list
+                (primary_expression
+                  (literal
+                    (array))))
+              (logic_block
+                (expression_statement
+                  (expression
+                    (primary_expression
+                      (function_call
+                        (identifier)
+                        (argument_list))))))
+              (else_clause
+                (logic_block
+                  (expression_statement
                     (expression
-                      (identifier)))))))
-          (else_clause
-            (logic_block
-              (expression_statement
-                (expression
-                  (function_call
-                    (identifier)
-                    (argument_list
-                      (expression
-                        (string)))))))))))))
+                      (primary_expression
+                        (function_call
+                          (identifier)
+                          (argument_list))))))))))))
 
 =======
 While statement
 =======
 
 func prettyprint(a) {
-    while x > 0 {
-        println("x is positive");
+    while a {
+        println();
     }
     
-    while x > 0 {
-        println("x is positive");
+    while a {
+        println();
     } else {
-        println("x is <= 0");
+        println();
     }
 }
 
 ---
 
-(source_file
-  (function_definition
-    (identifier)
-    (parameter_list
-      (parameter
-        (identifier)))
-    (logic_block
-      (control_flow_statement
-        (while_statement
-          (expression
-            (identifier)
-            (operator)
-            (expression
-              (number)))
-          (logic_block
-            (expression_statement
+    (source_file
+      (function_definition
+        (identifier)
+        (parameter_list
+          (parameter
+            (identifier)))
+        (logic_block
+          (control_flow_statement
+            (while_statement
               (expression
-                (function_call
-                  (identifier)
-                  (argument_list
-                    (expression
-                      (string)))))))))
-      (control_flow_statement
-        (while_statement
-          (expression
-            (identifier)
-            (operator)
-            (expression
-              (number)))
-          (logic_block
-            (expression_statement
+                (primary_expression
+                  (identifier)))
+              (logic_block
+                (expression_statement
+                  (expression
+                    (primary_expression
+                      (function_call
+                        (identifier)
+                        (argument_list))))))))
+          (control_flow_statement
+            (while_statement
               (expression
-                (function_call
-                  (identifier)
-                  (argument_list
+                (primary_expression
+                  (identifier)))
+              (logic_block
+                (expression_statement
+                  (expression
+                    (primary_expression
+                      (function_call
+                        (identifier)
+                        (argument_list))))))
+              (else_clause
+                (logic_block
+                  (expression_statement
                     (expression
-                      (string)))))))
-          (else_clause
-            (logic_block
-              (expression_statement
-                (expression
-                  (function_call
-                    (identifier)
-                    (argument_list
-                      (expression
-                        (string)))))))))))))
+                      (primary_expression
+                        (function_call
+                          (identifier)
+                          (argument_list))))))))))))

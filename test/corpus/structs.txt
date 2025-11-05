@@ -3,18 +3,12 @@ Struct definition
 ==============
 
 struct Foo {
-    type func new(n) {
-        return alloc(This){
-            .n = n,
-        };
-    }
-
     operator + (rhs) {
-        return 42;
+        return;
     }
 
     reverse operator + (lhs) {
-        return this._op_impl_add(lhs);
+        return;
     }
 }
 
@@ -23,34 +17,9 @@ struct Foo {
 (struct_definition
     (identifier)
     (struct_block
-      (type_function_definition
-        (identifier)
-        (parameter_list
-          (parameter
-            (identifier)))
-        (logic_block
-          (return_statement
-            (expression
-              (alloc_call
-                (identifier)
-                (alloc_block
-                  (identifier)
-                  (expression
-                    (identifier))))))))
       (operator_override
         (logic_block
-          (return_statement
-            (expression
-              (number)))))
+          (return_statement)))
       (operator_override
         (logic_block
-          (return_statement
-            (expression
-                (identifier)
-                (operator)
-                (expression
-                (function_call
-                  (identifier)
-                  (argument_list
-                    (expression
-                      (identifier))))))))))))
+          (return_statement))))))

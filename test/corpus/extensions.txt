@@ -4,7 +4,7 @@ Extension definition
 
 extension Foo {
     func add(x) {
-        return 3;
+        return;
     }
 }
 
@@ -19,6 +19,4 @@ extension Foo {
           (parameter
             (identifier)))
         (logic_block
-          (return_statement
-            (expression
-              (number))))))))
+          (return_statement))))))

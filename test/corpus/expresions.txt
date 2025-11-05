@@ -2,47 +2,95 @@
 Enum expression
 =========
 
-func main() {
-    val a = Result::Ok(42);
-}
+val a = Result::Ok(42);
 
 ---
 
-(source_file
-  (function_definition
-    (identifier)
-    (parameter_list)
-    (logic_block
+    (source_file
       (variable_declaration
         (identifier)
         (assignment_operator)
         (expression
-          (enum_value
-            (type
-              (identifier))
-            (identifier)
-            (expression
-              (number))))))))
+          (primary_expression
+            (enum_value
+              (type
+                (identifier))
+              (identifier)
+              (expression
+                (primary_expression
+                  (literal
+                    (number)))))))))
 
 =========
 Force unwrap
 =========
 
-func main() {
-    val a = b!!;
-}
+val a = b!!;
 
 ---
 
-(source_file
-  (function_definition
-    (identifier)
-    (parameter_list)
-    (logic_block
+    (source_file
       (variable_declaration
         (identifier)
         (assignment_operator)
         (expression
-          (forced_unwrap
+          (primary_expression
             (expression
-              (identifier))))))))
+              (primary_expression
+                (identifier)))
+            (suffix_operator)))))
+              
+=========
+Compound expression
+=========
+
+val a = 5 + (-3) - "Foo" - (2 >> 4)!!;
+
+---
+
+    (source_file
+      (variable_declaration
+        (identifier)
+        (assignment_operator)
+        (expression
+          (primary_expression
+            (expression
+              (binary_expression
+                (expression
+                  (binary_expression
+                    (expression
+                      (binary_expression
+                        (expression
+                          (primary_expression
+                            (literal
+                              (number))))
+                        (binary_operator)
+                        (expression
+                          (primary_expression
+                            (expression
+                              (unary_expression
+                                (prefix_operator)
+                                (expression
+                                  (primary_expression
+                                    (literal
+                                      (number))))))))))
+                    (binary_operator)
+                    (expression
+                      (primary_expression
+                        (literal
+                          (string))))))
+                (binary_operator)
+                (expression
+                  (primary_expression
+                    (expression
+                      (binary_expression
+                        (expression
+                          (primary_expression
+                            (literal
+                              (number))))
+                        (binary_operator)
+                        (expression
+                          (primary_expression
+                            (literal
+                              (number))))))))))
+            (suffix_operator)))))    

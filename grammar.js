@@ -16,7 +16,7 @@ module.exports = grammar({
 
   extras: ($) => [/\s/, $.comment],
 
-  conflicts: ($) => [[$.operator, $.type]],
+  conflicts: ($) => [[$.primary_expression, $.type]],
 
   rules: {
     source_file: ($) =>
@@ -116,27 +116,6 @@ module.exports = grammar({
         $.logic_block,
       ),
 
-    operator: ($) =>
-      choice(
-        "+",
-        "-",
-        "*",
-        "/",
-        "%",
-        "<<",
-        ">>",
-        "==",
-        "!=",
-        "<",
-        ">",
-        "<=",
-        ">=",
-        "&",
-        "|",
-        "^",
-        ".",
-      ),
-
     assignment_operator: ($) =>
       choice("+=", "-=", "*=", "/=", "%=", "<<=", ">>=", "&=", "|=", "^=", "="),
 
@@ -157,7 +136,7 @@ module.exports = grammar({
         $.assert_statement,
       ),
 
-    return_statement: ($) => seq("return", $.expression, ";"),
+    return_statement: ($) => seq("return", optional($.expression), ";"),
 
     expression_statement: ($) => seq($.expression, ";"),
 
@@ -215,29 +194,52 @@ module.exports = grammar({
     else_clause: ($) => seq("else", $.logic_block),
 
     expression: ($) =>
-      seq(
-        choice(
-          $.alloc_call,
-          $.function_call,
-          $.number,
-          $.string,
-          $.array,
-          $.identifier,
-          $.enum_value,
-          $.forced_unwrap,
-        ),
-        optional(seq($.operator, $.expression)),
+      choice($.binary_expression, $.unary_expression, $.primary_expression),
+
+    binary_expression: ($) =>
+      prec.left(10, seq($.expression, $.binary_operator, $.expression)),
+
+    unary_expression: ($) =>
+      prec.right(20, seq($.prefix_operator, $.expression)),
+
+    primary_expression: ($) =>
+      choice(
+        $.literal,
+        $.alloc_call,
+        $.function_call,
+        $.enum_value,
+        $.identifier,
+        seq("(", $.expression, ")"),
+        seq($.prefix_operator, $.expression),
+        seq($.expression, $.suffix_operator),
       ),
 
-    identifier: ($) => /[a-zA-Z_\-][a-zA-Z_\-0-9]*/,
+    literal: ($) => choice($.number, $.string, $.array),
 
-    type: ($) => seq($.identifier, repeat(seq(".", $.identifier))),
+    binary_operator: ($) =>
+      choice(
+        "+",
+        "-",
+        "*",
+        "/",
+        "%",
+        "<<",
+        ">>",
+        "==",
+        "!=",
+        "<",
+        ">",
+        "<=",
+        ">=",
+        "&",
+        "|",
+        "^",
+        ".",
+      ),
 
-    number: ($) => /\d+/,
+    suffix_operator: ($) => choice("!!"),
 
-    string: ($) => /"[^"]*"/,
-
-    array: ($) => seq("[", optional(list_of(",", $.expression)), "]"),
+    prefix_operator: ($) => choice("-"),
 
     alloc_call: ($) =>
       prec.right(99, seq("alloc(", $.identifier, ")", optional($.alloc_block))),
@@ -258,11 +260,19 @@ module.exports = grammar({
         optional(seq("(", list_of(",", $.expression), ")")),
       ),
 
-    forced_unwrap: ($) => prec(100, seq($.expression, "!!")),
-
     function_call: ($) => seq($.identifier, $.argument_list),
 
     argument_list: ($) => seq("(", optional(list_of(",", $.expression)), ")"),
+
+    identifier: ($) => /[a-zA-Z_][a-zA-Z_\-0-9]*/,
+
+    type: ($) => seq($.identifier, repeat(seq(".", $.identifier))),
+
+    number: ($) => /\d+/,
+
+    string: ($) => /"[^"]*"/,
+
+    array: ($) => seq("[", optional(list_of(",", $.expression)), "]"),
 
     pattern: ($) => seq($.identifier, "(", $.identifier, ")"),
 

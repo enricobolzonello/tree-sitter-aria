@@ -34,7 +34,9 @@ val counter = 0;
     (identifier)
     (assignment_operator)
     (expression
-      (number))))
+      (primary_expression
+        (literal
+          (number))))))
 
 =======
 Return statement
@@ -53,4 +55,6 @@ func next() {
     (logic_block
       (return_statement
         (expression
-          (number))))))
+          (primary_expression
+            (literal
+              (number))))))))
