@@ -15,6 +15,10 @@ module.exports = grammar({
   name: "aria",
 
   extras: ($) => [/\s/, $.comment],
+  
+  conflicts: $ => [
+    [$.operator, $.type],
+  ],
 
   conflicts: ($) => [[$.primary_expression, $.type]],
 
