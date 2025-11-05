@@ -24,6 +24,7 @@ module.exports = grammar({
           $._statement,
           $.struct_definition,
           $.extension_definition,
+          $.enum_definition,
           $.import,
         ),
       ),
@@ -39,6 +40,19 @@ module.exports = grammar({
     struct_definition: ($) => seq("struct", $.identifier, $.struct_block),
 
     extension_definition: ($) => seq("extension", $.identifier, $.struct_block),
+
+    enum_definition: ($) => seq("enum", $.identifier, $.enum_block),
+
+    enum_block: ($) =>
+      seq(
+        "{",
+        repeat(choice($.struct_definition)),
+        list_of(",", $.enum_case),
+        "}",
+      ),
+
+    enum_case: ($) =>
+      seq("case", $.identifier, optional(seq("(", list_of(",", $.type), ")"))),
 
     struct_block: ($) =>
       seq(
@@ -58,7 +72,7 @@ module.exports = grammar({
         "func",
         $.identifier,
         $.parameter_list,
-        optional(field("return_type", $.identifier)),
+        optional(field("return_type", $.type)),
         $.logic_block,
       ),
 
@@ -68,7 +82,7 @@ module.exports = grammar({
         "func",
         $.identifier,
         $.parameter_list,
-        optional(field("return_type", $.identifier)),
+        optional(field("return_type", $.type)),
         $.logic_block,
       ),
 
@@ -127,7 +141,7 @@ module.exports = grammar({
     parameter_list: ($) => seq("(", optional($.parameter), ")"),
 
     parameter: ($) =>
-      choice("...", seq($.identifier, optional(seq(":", $.identifier)))),
+      choice("...", seq($.identifier, optional(seq(":", $.type)))),
 
     logic_block: ($) => seq("{", repeat($._statement), "}"),
 
@@ -212,6 +226,8 @@ module.exports = grammar({
       ),
 
     identifier: ($) => /[a-zA-Z_\-][a-zA-Z_\-0-9]*/,
+
+    type: ($) => seq($.identifier, repeat(seq(".", $.identifier))),
 
     number: ($) => /\d+/,
 

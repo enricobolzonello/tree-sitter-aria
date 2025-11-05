@@ -1,0 +1,35 @@
+==========
+Enum definition
+==========
+
+enum TaskStatus {
+    struct BlockedReason {}
+
+    case NotStarted,
+    case InProgress(Int),
+    case Blocked(TaskStatus.BlockedReason),
+    case Completed
+}
+
+-----
+
+(source_file
+  (enum_definition
+    (identifier)
+    (enum_block
+      (struct_definition
+        (identifier)
+        (struct_block))
+      (enum_case
+        (identifier))
+      (enum_case
+        (identifier)
+        (type
+          (identifier)))
+      (enum_case
+        (identifier)
+        (type
+          (identifier)
+          (identifier)))
+      (enum_case
+        (identifier)))))

@@ -172,6 +172,63 @@
     }
   },
   {
+    "type": "enum_block",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "enum_case",
+          "named": true
+        },
+        {
+          "type": "struct_definition",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "enum_case",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "type",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "enum_definition",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "enum_block",
+          "named": true
+        },
+        {
+          "type": "identifier",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "expression",
     "named": true,
     "fields": {},
@@ -303,7 +360,7 @@
         "required": false,
         "types": [
           {
-            "type": "identifier",
+            "type": "type",
             "named": true
           }
         ]
@@ -500,6 +557,10 @@
         {
           "type": "identifier",
           "named": true
+        },
+        {
+          "type": "type",
+          "named": true
         }
       ]
     }
@@ -568,6 +629,10 @@
         },
         {
           "type": "control_flow_statement",
+          "named": true
+        },
+        {
+          "type": "enum_definition",
           "named": true
         },
         {
@@ -644,6 +709,21 @@
     }
   },
   {
+    "type": "type",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "identifier",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "type_function_definition",
     "named": true,
     "fields": {
@@ -652,7 +732,7 @@
         "required": false,
         "types": [
           {
-            "type": "identifier",
+            "type": "type",
             "named": true
           }
         ]
@@ -894,6 +974,10 @@
   },
   {
     "type": "elsif",
+    "named": false
+  },
+  {
+    "type": "enum",
     "named": false
   },
   {
