@@ -16,6 +16,8 @@ module.exports = grammar({
 
   extras: ($) => [/\s/, $.comment],
 
+  conflicts: ($) => [[$.operator, $.type]],
+
   rules: {
     source_file: ($) =>
       repeat(
@@ -221,6 +223,8 @@ module.exports = grammar({
           $.string,
           $.array,
           $.identifier,
+          $.enum_value,
+          $.forced_unwrap,
         ),
         optional(seq($.operator, $.expression)),
       ),
@@ -245,6 +249,16 @@ module.exports = grammar({
         optional(","),
         "}",
       ),
+
+    enum_value: ($) =>
+      seq(
+        $.type,
+        "::",
+        $.identifier,
+        optional(seq("(", list_of(",", $.expression), ")")),
+      ),
+
+    forced_unwrap: ($) => prec(100, seq($.expression, "!!")),
 
     function_call: ($) => seq($.identifier, $.argument_list),
 
