@@ -1,0 +1,48 @@
+=========
+Enum expression
+=========
+
+func main() {
+    val a = Result::Ok(42);
+}
+
+---
+
+(source_file
+  (function_definition
+    (identifier)
+    (parameter_list)
+    (logic_block
+      (variable_declaration
+        (identifier)
+        (assignment_operator)
+        (expression
+          (enum_value
+            (type
+              (identifier))
+            (identifier)
+            (expression
+              (number))))))))
+
+=========
+Force unwrap
+=========
+
+func main() {
+    val a = b!!;
+}
+
+---
+
+(source_file
+  (function_definition
+    (identifier)
+    (parameter_list)
+    (logic_block
+      (variable_declaration
+        (identifier)
+        (assignment_operator)
+        (expression
+          (forced_unwrap
+            (expression
+              (identifier))))))))
