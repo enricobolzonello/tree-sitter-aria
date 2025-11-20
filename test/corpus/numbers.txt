@@ -1,0 +1,71 @@
+========
+val octal declaration
+========
+
+val a = 0o0;
+
+---
+
+(source_file
+  (variable_declaration
+    (identifier)
+    (assignment_operator)
+    (expression
+      (primary_expression
+        (literal
+          (number
+            (oct_int_literal)))))))
+
+========
+val hex declaration
+========
+
+val a = 0xF0;
+
+---
+
+(source_file
+  (variable_declaration
+    (identifier)
+    (assignment_operator)
+    (expression
+      (primary_expression
+        (literal
+          (number
+            (hex_int_literal)))))))
+
+========
+val bin declaration
+========
+
+val a = 0b01;
+
+---
+
+(source_file
+  (variable_declaration
+    (identifier)
+    (assignment_operator)
+    (expression
+      (primary_expression
+        (literal
+          (number
+            (bin_int_literal)))))))
+
+========
+val float declaration
+========
+
+val a = 42.0;
+
+---
+
+(source_file
+  (variable_declaration
+    (identifier)
+    (assignment_operator)
+    (expression
+      (primary_expression
+        (literal
+          (number
+            (fp_literal)))))))

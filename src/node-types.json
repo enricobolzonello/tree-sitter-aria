@@ -566,6 +566,37 @@
     }
   },
   {
+    "type": "number",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "bin_int_literal",
+          "named": true
+        },
+        {
+          "type": "dec_int_literal",
+          "named": true
+        },
+        {
+          "type": "fp_literal",
+          "named": true
+        },
+        {
+          "type": "hex_int_literal",
+          "named": true
+        },
+        {
+          "type": "oct_int_literal",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "operator_override",
     "named": true,
     "fields": {
@@ -754,6 +785,25 @@
         },
         {
           "type": "variable_declaration",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "string",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "str_literal_dbl_qt",
+          "named": true
+        },
+        {
+          "type": "str_literal_sgl_qt",
           "named": true
         }
       ]
@@ -1085,6 +1135,10 @@
     "named": false
   },
   {
+    "type": "bin_int_literal",
+    "named": true
+  },
+  {
     "type": "case",
     "named": false
   },
@@ -1092,6 +1146,10 @@
     "type": "comment",
     "named": true,
     "extra": true
+  },
+  {
+    "type": "dec_int_literal",
+    "named": true
   },
   {
     "type": "else",
@@ -1114,12 +1172,20 @@
     "named": false
   },
   {
+    "type": "fp_literal",
+    "named": true
+  },
+  {
     "type": "from",
     "named": false
   },
   {
     "type": "func",
     "named": false
+  },
+  {
+    "type": "hex_int_literal",
+    "named": true
   },
   {
     "type": "identifier",
@@ -1142,7 +1208,7 @@
     "named": false
   },
   {
-    "type": "number",
+    "type": "oct_int_literal",
     "named": true
   },
   {
@@ -1158,7 +1224,11 @@
     "named": false
   },
   {
-    "type": "string",
+    "type": "str_literal_dbl_qt",
+    "named": true
+  },
+  {
+    "type": "str_literal_sgl_qt",
     "named": true
   },
   {

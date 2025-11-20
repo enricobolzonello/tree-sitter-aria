@@ -36,7 +36,8 @@ val counter = 0;
     (expression
       (primary_expression
         (literal
-          (number))))))
+          (number
+            (dec_int_literal)))))))
 
 =======
 Return statement
@@ -57,4 +58,5 @@ func next() {
         (expression
           (primary_expression
             (literal
-              (number))))))))
+              (number
+                (dec_int_literal)))))))))

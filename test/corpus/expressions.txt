@@ -19,7 +19,8 @@ val a = Result::Ok(42);
               (expression
                 (primary_expression
                   (literal
-                    (number)))))))))
+                    (number
+                      (dec_int_literal))))))))))
 
 =========
 Force unwrap
@@ -39,4 +40,3 @@ val a = b!!;
               (primary_expression
                 (identifier)))
             (suffix_operator)))))
-              

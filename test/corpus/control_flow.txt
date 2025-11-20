@@ -1,12 +1,12 @@
 ========
-Match statement 
+Match statement
 ========
 
 func prettyprint() {
     match this {
         case Fahrenheit(f) => {
             return;
-        }, 
+        },
         case Celsius(c) => {
             return;
         }
@@ -45,19 +45,19 @@ func prettyprint(a, b) {
     if a {
         println();
     }
-    
+
     if a {
         println();
     } else {
         println();
     }
-    
+
     if a {
         println();
     } elsif b {
         println();
     }
-    
+
     if a {
         println();
     } elsif b {
@@ -173,7 +173,7 @@ func prettyprint(a) {
     for i in [] {
         println();
     }
-    
+
     for x in [] {
         println();
     } else {
@@ -235,7 +235,7 @@ func prettyprint(a) {
     while a {
         println();
     }
-    
+
     while a {
         println();
     } else {

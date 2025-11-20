@@ -15,10 +15,8 @@ module.exports = grammar({
   name: "aria",
 
   extras: ($) => [/\s/, $.comment],
-  
-  conflicts: $ => [
-    [$.operator, $.type],
-  ],
+
+  conflicts: ($) => [[$.operator, $.type]],
 
   conflicts: ($) => [[$.primary_expression, $.type]],
 
@@ -272,9 +270,23 @@ module.exports = grammar({
 
     type: ($) => seq($.identifier, repeat(seq(".", $.identifier))),
 
-    number: ($) => /\d+/,
+    fp_literal: ($) => /-?[0-9]+\.[0-9]+([eE][+-]?[0-9]+)?f?/,
+    hex_int_literal: ($) => /0x[0-9a-fA-F]+(_[0-9a-fA-F]+)*/,
+    oct_int_literal: ($) => /0o[0-7]+(_[0-7]+)*/,
+    bin_int_literal: ($) => /0b[01]+(_[01]+)*/,
+    dec_int_literal: ($) => /-?[0-9]+(_[0-9]+)*/,
+    number: ($) =>
+      choice(
+        $.hex_int_literal,
+        $.oct_int_literal,
+        $.bin_int_literal,
+        $.dec_int_literal,
+        $.fp_literal,
+      ),
 
-    string: ($) => /"[^"]*"/,
+    str_literal_dbl_qt: ($) => /"[^"]*"/,
+    str_literal_sgl_qt: ($) => /'[^']*'/,
+    string: ($) => choice($.str_literal_dbl_qt, $.str_literal_sgl_qt),
 
     array: ($) => seq("[", optional(list_of(",", $.expression)), "]"),
 

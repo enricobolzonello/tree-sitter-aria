@@ -1494,13 +1494,71 @@
         }
       ]
     },
-    "number": {
+    "fp_literal": {
       "type": "PATTERN",
-      "value": "\\d+"
+      "value": "-?[0-9]+\\.[0-9]+([eE][+-]?[0-9]+)?f?"
     },
-    "string": {
+    "hex_int_literal": {
+      "type": "PATTERN",
+      "value": "0x[0-9a-fA-F]+(_[0-9a-fA-F]+)*"
+    },
+    "oct_int_literal": {
+      "type": "PATTERN",
+      "value": "0o[0-7]+(_[0-7]+)*"
+    },
+    "bin_int_literal": {
+      "type": "PATTERN",
+      "value": "0b[01]+(_[01]+)*"
+    },
+    "dec_int_literal": {
+      "type": "PATTERN",
+      "value": "-?[0-9]+(_[0-9]+)*"
+    },
+    "number": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "hex_int_literal"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "oct_int_literal"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "bin_int_literal"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "dec_int_literal"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "fp_literal"
+        }
+      ]
+    },
+    "str_literal_dbl_qt": {
       "type": "PATTERN",
       "value": "\"[^\"]*\""
+    },
+    "str_literal_sgl_qt": {
+      "type": "PATTERN",
+      "value": "'[^']*'"
+    },
+    "string": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "str_literal_dbl_qt"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "str_literal_sgl_qt"
+        }
+      ]
     },
     "array": {
       "type": "SEQ",
